@@ -1,0 +1,59 @@
+/* Intro Section */
+
+.cdp-intro {
+    width: 100%;
+    height: auto;
+
+    padding: 3rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cdp-intro-inner {
+    width: 50%;
+    display: inline-block;
+}
+
+.cdp-intro-title {
+    font-size: 3rem;
+    padding: 1.2rem;
+
+    margin: 0rem 2rem;
+}
+
+.cdp-intro-description {
+    font-size: 1rem;
+    padding: 1.2rem;
+
+    margin: 0rem 2rem;
+}
+
+.cdp-intro-image-container {
+    width: 600px;
+    height: 500px;
+    margin: auto;
+}
+
+.cdp-intro-image {
+    width: 400px;
+    height: 500px;
+    margin: auto;
+    display: block;
+
+    background-image: url(../img/Controller-Detection-UI.jpg);
+    background-size:contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    z-index: 1000;
+
+    animation: infinite scaleImage 30s;
+}
+
+@keyframes scaleImage {
+    0% {scale: 100%;}
+    50% {scale: 130%;}
+    100% {scale: 100%;}
+}

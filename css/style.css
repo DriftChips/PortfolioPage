@@ -2,22 +2,34 @@
 
 .static-image {
     width: 100%;
-    height: 1000px;
+    height: 850px;
+
+    
+
+    /*
     background-image: url(../img/static_background_image-03.png);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    */
   }
 
   .static-image > img {
     width: 100%;
   }
 
+  #background-video {
+    width: 100%;
+    height: 850px;
+    position: absolute;
+    object-fit: cover;
+  }
+
   .overlay-text {
     width: fit-content;
     position: relative;
-    top: 35%;
+    top: 37%;
     left: 33.33%;
     transform: translate(-50%, -50%);
     color: white;
@@ -26,6 +38,22 @@
 
     z-index: 0;
   }
+
+/* Page Image */
+
+.page-image {
+  width: 100%;
+  height: auto;
+
+  background-image: url(../img/Website-background.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  background-color: rgb(17, 17, 17);
+
+  z-index: 1000;
+}
 
 /* About Me Section */
 
@@ -37,13 +65,6 @@
   justify-content: center;
   display: flex;
 
-  background-image: url(../img/About-Me-background.png);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  background-color: rgb(17, 17, 17);
-
   z-index: 1000;
 }
 
@@ -51,7 +72,6 @@
   width: 100%;
   height: auto;
   position: absolute;
-  background-color: rgba(17, 17, 17, 0);
 
   z-index: 999;
 }
@@ -90,13 +110,6 @@
   align-items: center;
   justify-content: center;
   display: flex;
-
-  background-color: rgb(13, 13, 13);
-
-  background-image: url(../img/Skills-background.png);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
 
   z-index: 1000;
 }
@@ -158,8 +171,6 @@
   justify-content: center;
   display: flex;
   flex-direction: column;
-
-  background-color: rgb(19, 19, 19);
 
   z-index: 1000;
 }
@@ -239,8 +250,6 @@
   flex-direction: column;
 
   padding: 3rem;
-
-  background-color: rgb(13, 13, 13);
 
   z-index: 1000;
 }
