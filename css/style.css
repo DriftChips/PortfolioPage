@@ -1,42 +1,40 @@
 /* Main Image - Intro */
 
 .static-image {
-    width: 100%;
-    height: 850px;
+  width: 100%;
+  height: 1080px;
 
-    
+  
 
-    /*
-    background-image: url(../img/static_background_image-03.png);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    */
+  /*
+  background-image: url(../img/static_background_image-03.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  */
   }
 
-  .static-image > img {
-    width: 100%;
-  }
+
 
   #background-video {
-    width: 100%;
-    height: 850px;
-    position: absolute;
-    object-fit: cover;
+  width: 100%;
+  height: 1080px;
+  position: absolute;
+  object-fit: contain;
   }
 
   .overlay-text {
-    width: fit-content;
-    position: relative;
-    top: 37%;
-    left: 33.33%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-size: 26px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  width: fit-content;
+  position: relative;
+  top: 39%;
+  left: 33.33%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 26px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 
-    z-index: 0;
+  z-index: 0;
   }
 
 /* Page Image */
@@ -221,6 +219,12 @@
   z-index: 900;
 }
 
+.projects-link-button {
+  width: 20%;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
 .all-projects-button {
   background-color: aliceblue;
   color: black;
@@ -257,7 +261,6 @@
 .education-experience-inner {
   width: 70%;
   height: auto;
-  background-color: rgb(30, 31, 32);
 
   position: relative;
   display: flex;

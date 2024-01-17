@@ -7,7 +7,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;200;300;400;500;600;700;800;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/atom-one-dark.min.css">
+
+    <link rel="stylesheet" href="../css/resetProjects.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/projects.css">
@@ -17,23 +19,203 @@
     <div class="header">
         <p class="logo">/* Dmitry */</p>
         <div class="header-right">
-            <p class="active">01. <a href="#">Home</a><p>||</p></p>
-            <p class="active">02. <a href="#">About</a><p>||</p></p>
-            <p class="active">03. <a href="#">Skills</a><p>||</p></p>
-            <p class="active">04. <a href="#">Projects</a><p>||</p></p>
-            <p class="active">05. <a href="#">Experience</a><p>||</p></p>
-            <p class="active">06. <a href="#">Contact</a></p>
+        <p class="active">01. <a href="../index.html">Home</a><p>||</p></p>
+        <p class="active">02. <a href="../index.html#about">About</a><p>||</p></p>
+        <p class="active">03. <a href="../index.html#skills">Skills</a><p>||</p></p>
+        <p class="active">04. <a href="../index.html#projects">Projects</a><p>||</p></p>
+        <p class="active">05. <a href="../index.html#experience">Experience</a><p>||</p></p>
+        <p class="active">06. <a href="#">Contact</a></p>
         </div>
         </div>
+    
 
+    
     <div class="page-image">
         <section class="cdp-intro">
             <div class="cdp-intro-inner">
                 <div class="cdp-intro-title">PS5 Controller Detection Software</div>
                 <div class="cdp-intro-description">A piece of software that detects whether a PS5 controller is plugged in. Programmed in Python and packaged as an executable with a small UI for the buttons, displays and a tray icon.</div>
+                <div class="cdp-intro-description"><p style="font-size: 2rem;">The problem:</p> When launching some games while having the controller plugged resulted in a heavy framerate drop (down to 5-6fps). This is most likely because the controller is overclocked using a third party software which puts the controller on the same channel as the mouse resulting in two inputs. The controller has a bit of stick drift therefore my assumption was that this was causing issues in performance.</div>
             </div>
             <div class="cdp-intro-image-container">
-                <div class="cdp-intro-image"></div>
+                <div class="cdp-intro-image">
+                    <img src="../img/Controller-Detection-UI.jpg" alt="an image of the controller detection UI">
+                </div>
+            </div>
+        </section>
+
+        <section class="cdp-additional">
+            <div class="cdp-additional-demo">
+                <div class="cdp-additional-demo-video">
+                    <video autoplay muted loop id="cdp-demo-video">
+                        <source src="../mp4/Controller Detection Demo.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="cdp-intro-description"><p style="font-size: 2rem;">The solutuion:</p> Create a software that detects whether the controller is plugged in using the Vendor and product ID. Depending on the status this will turn the traffic light red or green as well as setting the icon tray the corresponding colour as well. This will remind the user (me) whether the controller is plugged in or not without having to reach round the back of the PC to check.</div>
+
+            </div>
+            <div class="cdp-additional-code">
+                <div class="cdp-additional-code-image">
+                    <pre>
+                        <code class="language-python">
+1      import usb.core
+2      import usb.util
+3      import usb.backend.libusb1
+4      import tkinter as tk
+5      from tkinter import *
+6      import tkinter.messagebox as tkmb
+7      import customtkinter
+8      from PIL import ImageTk, Image
+9      from pystray import MenuItem as item
+10     import pystray
+11     import sys
+12     import os
+13 
+14 
+15     from win32api import (GetModuleFileName, RegCloseKey, RegDeleteValue,
+16                         RegOpenKeyEx, RegSetValueEx, RegEnumValue)
+17     from win32con import (HKEY_LOCAL_MACHINE, HKEY_CURRENT_USER, KEY_WRITE,
+18                         KEY_QUERY_VALUE, REG_SZ)
+18     from winerror import ERROR_NO_MORE_ITEMS
+19     import pywintypes
+20 
+21 
+22     #Setting the window settings
+23     customtkinter.set_appearance_mode("dark")
+24     customtkinter.set_default_color_theme("green")  # Themes: blue (default), dark-blue, green
+25     window = customtkinter.CTk()
+26     window.title("Controller Detection")
+27     window.geometry("500x400")
+28     #windowIcon = PhotoImage(file = "controllerIcon.png")
+29     #window.iconphoto(False, windowIcon)
+30 
+31 
+32     isConnected = None
+33 
+34     #Function for checking for the controller
+35     def checkForController():
+36 
+37         #Locate the controller device
+38         dev1 = usb.core.find(idVendor=1356,idProduct=3302)
+39 
+40         #If device is not found, print to console and change the icon to the red_light, else do the opposite
+41         if dev1 is None:
+42             print("Device is Disconnected")
+43             label.configure(text = "Device is Disconnected")
+44             redLightImage = customtkinter.CTkImage(Image.open(resource_path("Red_Light.png")), size=(100,173))
+45             imgLabel.configure(image=redLightImage)
+46             imgLabel.image=redLightImage
+47             isNotConnectedFunc()
+48 
+49 
+50         else:
+51             print("Device connected")
+52             label.configure(text = "Device Connected")
+53             greenLightImage = customtkinter.CTkImage(Image.open(resource_path("Green_Light.png")), size=(100,173))
+54             imgLabel.configure(image=greenLightImage)
+55             imgLabel.image=greenLightImage
+56             isConnected == True
+57             isConnected
+58             isConnectedFunc()
+59 
+60         window.after(1000, checkForController)
+61 
+62     #Booleans that change the status to True or False depending whether the device is connected and then changes the tray icon accordingly
+63     def isConnectedFunc():
+64         if isConnected == True:
+65             pass
+66         else:
+67             isConnected == True
+68             changeIconGreen()
+69             return
+70 
+71     def isNotConnectedFunc():
+72         if isConnected == False:
+73             pass
+74         else:
+75             isConnected == False
+76             changeIconRed()
+77             return
+78 
+79     def changeIconRed():
+80         icon.icon = Image.open(resource_path("controllerIconRed.ico"))
+81 
+82     def changeIconGreen():
+83         icon.icon = Image.open(resource_path("controllerIconGreen.ico"))
+84 
+85 
+86     #Define the resource path where all images are kept
+87     def resource_path(relative_path):
+88         try:
+89             base_path = sys._MEIPASS
+90         except Exception:
+91             base_path = os.path.abspath(".")
+92 
+93         return os.path.join(base_path, relative_path)
+94 
+95     def quitApplication():
+96         icon.stop()
+97         window.quit()
+98 
+99 
+100    #Locating and creating the image labels for the light system
+101    redLightImage = customtkinter.CTkImage(Image.open(resource_path("Red_Light.png")), size=(100,173))
+102    greenLightImage = customtkinter.CTkImage(Image.open(resource_path("Green_Light.png")), size=(173,173))
+103    imgLabel = customtkinter.CTkLabel(master=window,image = redLightImage, text="",width=120,height=200)
+104    imgLabel.pack(pady=5)
+105
+106
+107    #Simple Label to hold text
+108    label = customtkinter.CTkLabel(window, text="Click the Button to start the controller check")
+109    label.pack(pady=20)
+110    #Button to Start the function
+111    btn1 = customtkinter.CTkButton(window, text="Start", command=checkForController)
+112    btn1.pack(pady=20)
+113    #Quit Button
+114    quitBtn = customtkinter.CTkButton(window, text="Quit & Stop Application", command=quitApplication)
+115    quitBtn.pack(pady=10)
+116
+117
+118    ''' 
+119    <-------------------------------------------------------------------------------->
+120    #Function for testing
+121    def testFunction():
+122        if isConnected == True:
+123            print("isConnected == True")
+124        elif isConnected == False:
+125            print("isConnected == True")
+126    '''
+127
+128    '''
+129    #Test button
+130    testBtn = customtkinter.CTkButton(window, text="Test Button", command=testFunction)
+131    testBtn.pack(pady=20)
+132    <-------------------------------------------------------------------------------->
+133    '''
+134
+135    #Functions for quiting, minimising, and showing the tray icon
+136    def quitWindow(icon, item):
+137        icon.stop()
+138        window.quit()
+139
+140    def showWindow(icon, item):
+141        window.after(0, window.deiconify)
+142
+143    def withdraw_window():  
+144        window.withdraw()
+145
+146
+147    #Initiation of the tray icon
+148    image = Image.open(resource_path("controllerIconDesktop.ico"))
+149    menu = (item('Quit', quitWindow), item('Open', showWindow))
+150    icon = pystray.Icon("name", image, "title", menu)
+151    icon.run_detached()
+152    window.protocol('WM_DELETE_WINDOW', withdraw_window)
+153
+154    window.mainloop()
+                        </code>
+                </div>
             </div>
         </section>
     </div>
@@ -52,5 +234,12 @@
             <p>Made by me and hosted in SquareSpace</p>
         </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+
+    <!-- and it's easy to individually load additional languages -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/go.min.js"></script>
+
+    <script>hljs.highlightAll();</script>
 </body>
 </html>

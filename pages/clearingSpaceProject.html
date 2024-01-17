@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clearing Space Project</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;200;300;400;500;600;700;800;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/atom-one-dark.min.css">
+
+    <link rel="stylesheet" href="../css/resetProjects.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/projects.css">
+    <link rel="stylesheet" href="../css/hover.css">
+</head>
+<body>
+    <div class="header">
+        <p class="logo">/* Dmitry */</p>
+        <div class="header-right">
+        <p class="active">01. <a href="../index.html">Home</a><p>||</p></p>
+        <p class="active">02. <a href="../index.html#about">About</a><p>||</p></p>
+        <p class="active">03. <a href="../index.html#skills">Skills</a><p>||</p></p>
+        <p class="active">04. <a href="../index.html#projects">Projects</a><p>||</p></p>
+        <p class="active">05. <a href="../index.html#experience">Experience</a><p>||</p></p>
+        <p class="active">06. <a href="#">Contact</a></p>
+        </div>
+        </div>
+    
+
+    
+    <div class="page-image">
+        <section class="cdp-intro">
+            <div class="cdp-intro-inner">
+                <div class="cdp-intro-title">Clearing Space Project</div>
+                <div class="cdp-intro-description">Clearing Space was a game concept that I developed in my spare time. I used Unity's engine and editor to create the game which uses C# as it's programming language.</div>
+                <div class="cdp-intro-description">In Clearing Space the player controls a ship that flys around the Earth breaking down and collecting debris. The debris can be refined or sold back to Earth with the use of a Space Elevator.</div>
+            </div>
+            <div class="cs-intro-image-container">
+                <div class="cdp-additional-demo-video">
+                    <video style="width: 1080px;" autoplay muted loop id="cdp-demo-video">
+                        <source src="../mp4/clearing-space-demo.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </section>
+
+        <section class="cdp-additional">
+            <div class="cdp-additional-demo">
+                <div class="cdp-additional-demo-video">
+                    <video autoplay muted loop id="cdp-demo-video">
+                        <source src="../mp4/clearing-space-pointer-demo.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="cdp-intro-description"><p style="font-size: 2rem;">Camera Pointer</p> I needed a way to point a small arrow towards the space station to help guide the player back. The solution was to calculate multiple points that are joined together using the LineRenderer component. Because the radius at which the ship flys is constant, it was easy to make an accurate calculation, the result was smoothed out for further accuracy.</div>
+
+            </div>
+            <div class="cdp-additional-code">
+                <div class="cs-additional-code-image">
+                    <pre>
+                        <code class="language-csharp">
+1    using System.Collections;
+2    using System.Collections.Generic;
+3    using UnityEngine;
+4
+5    public class PlayerToStationPointer : MonoBehaviour
+6    {
+7
+8        //Inspector References
+9        private GameObject _spaceStation;
+10        private GameObject _spaceShip;
+11
+12        [SerializeField] private float radius = 250.0f;
+13        [SerializeField] private Transform arrowPrefab;
+14
+15        private LineRenderer _lineRenderer;
+16        [SerializeField] private int _linePositionCount = 50;
+17        private Transform arrowInstance;
+18
+19
+20        void Start()
+21        {
+22            //Set Shorter References
+23            _spaceStation = GameObject.FindGameObjectWithTag("SpaceStation");
+24            _spaceShip = GameObject.FindGameObjectWithTag("Ship");
+25
+26            _lineRenderer = GetComponent<LineRenderer>();
+27            _lineRenderer.positionCount = _linePositionCount;
+28
+29            // Creates an instance of the arrow prefab
+30            arrowInstance = Instantiate(arrowPrefab, _spaceStation.transform.position, Quaternion.identity);
+31        }
+32
+33        void Update()
+34        {
+35
+36            // for loop iterate over points in a QuadraticCurve, the number of points is definied in the editor or above.
+37            for (int i = 0; i < _lineRenderer.positionCount; i++)
+38            {
+39                float t = (float)i / (float)(_lineRenderer.positionCount - 1);
+40                Vector3 pos = GetQuadraticCurvePoint(_spaceShip.transform.position, Vector3.zero, _spaceStation.transform.position, t);
+41                pos = pos.normalized * radius;
+42
+43                //creates a smooth curve from the player to the spacestation
+44                _lineRenderer.SetPosition(i, pos);
+45            }
+46
+47            // points the arrow towards the spacestation using the position and rotation of the lineRenderer
+48            arrowInstance.position = _spaceShip.transform.position;
+49            arrowInstance.rotation = Quaternion.LookRotation(_lineRenderer.GetPosition(1) - arrowInstance.position);
+50        }
+                        </code>
+                </div>
+            </div>
+        </section>
+
+        <div class="spacer"></div>
+
+        <section class="cdp-additional">
+            <div class="cdp-additional-code">
+                <div class="pp-additional-code-image-2">
+                    <pre>
+                        <code class="language-csharp">
+1        using System.Collections;
+2        using System.Collections.Generic;
+3        using UnityEngine;
+4        using UnityEngine.UI;
+5        
+6        public class DistanceToStation : MonoBehaviour
+7        {
+8        
+9            //Inspector References
+10            private GlobalReferences _globalReferences;
+11            private GlobalSettings _globalSettings;
+12        
+13            private float _distance;
+14            public float zSpeed = 1.0f;
+15        
+16            [SerializeField] private Camera mainCamera;
+17            [SerializeField] private Button _stationButton;
+18        
+19            private void Start()
+20            {
+21                //Set Shorter References
+22                _globalReferences = GlobalReferences.Singleton;
+23                _globalSettings = GlobalSettings.Singleton;
+24            }
+25        
+26            private void Update()
+27            {
+28        
+29                // Getting the distance between the player position and the Spacestation Position
+30                _distance = Vector3.Distance(transform.position, _globalReferences.SpaceStation.transform.position);
+31        
+32                //Check to see if the distance is smaller or equal to the TriggerDistance
+33                if (_distance <= _globalSettings.StationTriggerDistance)
+34                {
+35                    //Change the camera's position to "Zoom out" when in range of the station
+36                    float targetZ = Mathf.Lerp(mainCamera.transform.localPosition.z, -100, zSpeed * Time.deltaTime);
+37                    mainCamera.transform.localPosition = new Vector3(mainCamera.transform.localPosition.x, mainCamera.transform.   localPosition.y, targetZ);
+38                    //Allow the player to interact with the station
+39                    _stationButton.interactable = true;
+40                    //Transfer all cargo to the station
+41                    TransferPlayerCargo(_globalReferences.PlayerCargo.GetCargoAmount);
+42                }
+43                else
+44                {
+45                    //Else do the opposite of above
+46                    _stationButton.interactable = false;
+47                    float targetZ = Mathf.Lerp(mainCamera.transform.localPosition.z, -45, zSpeed * Time.deltaTime);
+48                    mainCamera.transform.localPosition = new Vector3(mainCamera.transform.localPosition.x, mainCamera.transform.localPosition.y, targetZ);
+49                }
+50            }
+                        </code>
+                </div>
+            </div>
+            <div class="cdp-additional-demo">
+                <div class="cdp-additional-demo-video">
+                    <video  autoplay muted loop id="cdp-demo-video">
+                        <source src="../mp4/clearing-space-distancetostatio-demo_1.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="cdp-intro-description"><p style="font-size: 2rem;">Distance To Station</p>Using a simple compairson function I could find out the distance between the space station and the player. Then with an if statement would check whether the distance was smaller than 100 units, if the result came back true I could then animate the camera to zoom in and out using a lerp function to smooth the transition.</div>
+
+            </div>
+        </section>
+
+        <div class="spacer"></div>
+
+        <section class="cdp-additional">
+            <div class="cdp-additional-demo">
+                <div class="cdp-additional-demo-video">
+                    <video autoplay muted loop id="cdp-demo-video">
+                        <source src="../mp4/clearing-space-cargo-demo.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="cdp-intro-description"><p style="font-size: 2rem;">Cargo Teleport</p>This script checks for cargo amounts in the ship and the space station, compares them to see if the current junk is less than the max and adds the junk to the station inventory. The AddCargo function is called in the script above when the player is close enough to the station.</div>
+
+            </div>
+            <div class="cdp-additional-code">
+                <div class="pp-additional-code-image-3">
+                    <pre>
+                        <code class="language-csharp">
+1        using System.Collections;
+2        using System.Collections.Generic;
+3        using UnityEngine;
+4        using TMPro;
+5        
+6        public class Cargo : MonoBehaviour
+7        {
+8            //audio source
+9            public AudioSource _audioSource;
+10            
+11            private GlobalSettings _globalSettings;  //Global settings
+12            private UIManager _uiManager;
+13            private int _cargoAmount = 100;
+14        
+15            private void Start()
+16            {
+17                //Set Shorter References
+18                _globalSettings = GlobalSettings.Singleton;
+19                _uiManager = UIManager.Singleton;
+20        
+21                //Set Inital UI Text
+22                _uiManager.PlayerCargoText = _cargoAmount;
+23                _uiManager.PlayerMaxCargoText = _globalSettings.PlayerMaxCargo;
+24        
+25                //Get audio Component
+26                _audioSource = GetComponent<AudioSource>();
+27                if (_audioSource == null) { Debug.LogError("No Audio Source Detected [Cargo]"); }
+28            }
+29        
+30            public int GetCargoAmount
+31            {
+32                get { return _cargoAmount; }
+33            }
+34        
+35            //Add more than one junk
+36            public bool AddCargo(int j)
+37            {
+38                //If zero or less, action has failed. adding 0 junk or negative junk will do nothing
+39                if (j <= 0) { return false; }
+40        
+41                //If current junk and added junk is less than the max
+42                if (_cargoAmount + j <= _globalSettings.PlayerMaxCargo)
+43                {
+44                    //Add Junk
+45                    _cargoAmount += j;
+46        
+47                    //Set UI Cargo Value
+48                    _uiManager.PlayerCargoText = _cargoAmount;
+49        
+50                    //Great success!
+51                    return true;                                        
+52                }
+53                return false;                                          
+54            }
+55        
+56        
+57            //Remove more than one junk | has issues! need confirmation that junk has been removed
+58            public bool RemoveCargo(int j)
+59            {
+60                //If zero or less, action has failed. removing 0 junk or negative junk will do nothing
+61                if (j <= 0) { return false; }
+62        
+63                //Do we have the junk we are trying to remove
+64                if (_cargoAmount >= j)                   
+65                {
+66                    //Remove all junk
+67                    _cargoAmount -= j;
+68        
+69                    //Set UI Cargo Value
+70                    _uiManager.PlayerCargoText = _cargoAmount;
+71        
+72                    //Great success!
+73                    return true;
+74                }
+75                return false;                               
+76            }
+77        }
+                        </code>
+                </div>
+            </div>
+        </section>
+
+        <div class="spacer"></div>
+    </div>
+
+
+    <footer>
+        <div class="footer-quote"><p>“We all need people who will give us feedback. That’s how we improve.”</p>
+            <p style="font-style: italic;">- Bill Gates</p>
+        </div>
+        <div class="footer-left"></div>
+        <div class="footer-socials">
+            <a class="github-icon" href="https://github.com/DriftChips" target="_blank"></a>
+            <a class="linkedin-icon" href="https://www.linkedin.com/in/dmitry-popovichev/" target="_blank"></a>
+            <a class="artstation-icon" href="https://dmitryp6.artstation.com/" target="_blank"></a>
+        </div>
+        <div class="footer-madeby">
+            <p>Made by me and hosted in SquareSpace</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+
+    <!-- and it's easy to individually load additional languages -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/go.min.js"></script>
+
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

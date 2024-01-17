@@ -18,14 +18,14 @@
 
 .cdp-intro-title {
     font-size: 3rem;
-    padding: 1.2rem;
+    padding: 1.2rem 0.5rem;
 
     margin: 0rem 2rem;
 }
 
 .cdp-intro-description {
-    font-size: 1rem;
-    padding: 1.2rem;
+    font-size: 1.4rem;
+    padding: 0.5rem;
 
     margin: 0rem 2rem;
 }
@@ -36,13 +36,19 @@
     margin: auto;
 }
 
+.cs-intro-image-container {
+    width: 1080px;
+    height: 600px;
+    margin: auto;
+}
+
 .cdp-intro-image {
     width: 400px;
     height: 500px;
     margin: auto;
+    margin-top: 15%;
     display: block;
 
-    background-image: url(../img/Controller-Detection-UI.jpg);
     background-size:contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -56,4 +62,95 @@
     0% {scale: 100%;}
     50% {scale: 130%;}
     100% {scale: 100%;}
+}
+
+/* Additional Section */
+
+.cdp-additional {
+    width: 100%;
+    height: auto;
+
+    padding: 3rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cdp-additional-demo {
+    width: 50%;
+    display: inline-block;
+}
+
+.cdp-additional-demo-video {
+    width: 100%;
+}
+
+.cdp-additional-demo-video > video {
+    width: 100%;
+    padding: 1rem 2.4rem;
+}
+
+
+.cdp-additional-demo-desciption {
+    font-size: 1rem;
+    padding: 2rem;
+}
+
+.cdp-additional-code {
+    width: 50%;
+
+    background-color: black;
+}
+
+.spacer {
+    width: 100%;
+    height: 100px;
+}
+
+/* Code boxes */
+
+.cdp-additional-code-image {
+    font-size: 1.1rem;
+    height: 760px;
+    display: block;
+    overflow-x: auto;
+    overflow-y: scroll;
+    padding: 0.5em;
+}
+
+.pp-additional-code-image {
+    font-size: 1.1rem;
+    height: 400px;
+    display: block;
+    overflow-x: auto;
+    overflow-y: scroll;
+    padding: 0.5em;
+}
+
+.pp-additional-code-image-2 {
+    font-size: 1.1rem;
+    height: 760px;
+    display: block;
+    overflow-x: auto;
+    overflow-y: scroll;
+    padding: 0.5em;
+}
+
+.pp-additional-code-image-3 {
+    font-size: 1.1rem;
+    height: 760px;
+    display: block;
+    overflow-x: auto;
+    overflow-y: scroll;
+    padding: 0.5em;
+}
+
+.cs-additional-code-image {
+    font-size: 1.1rem;
+    height: 760px;
+    display: block;
+    overflow-x: auto;
+    overflow-y: scroll;
+    padding: 0.5em;
 }

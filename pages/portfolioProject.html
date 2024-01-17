@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Project</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;200;300;400;500;600;700;800;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/atom-one-dark.min.css">
+
+    <link rel="stylesheet" href="../css/resetProjects.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/projects.css">
+    <link rel="stylesheet" href="../css/hover.css">
+</head>
+<body>
+    <div class="header">
+        <p class="logo">/* Dmitry */</p>
+        <div class="header-right">
+        <p class="active">01. <a href="../index.html">Home</a><p>||</p></p>
+        <p class="active">02. <a href="../index.html#about">About</a><p>||</p></p>
+        <p class="active">03. <a href="../index.html#skills">Skills</a><p>||</p></p>
+        <p class="active">04. <a href="../index.html#projects">Projects</a><p>||</p></p>
+        <p class="active">05. <a href="../index.html#experience">Experience</a><p>||</p></p>
+        <p class="active">06. <a href="#">Contact</a></p>
+        </div>
+        </div>
+    
+
+    
+    <div class="page-image">
+        <section class="cdp-intro">
+            <div class="cdp-intro-inner">
+                <div class="cdp-intro-title">Personal Website Project</div>
+                <div class="cdp-intro-description">The webpages you are seeing here were created to showcase my best work, skills and experience.</div>
+                <div class="cdp-intro-description"> This project took a total of four weeks to complete from start to finish. The time could be cut down considerably if attempted a second time as it took a little bit of time to refresh my HTML, CSS and JavaScript knowledge.</div>
+            </div>
+            <div class="cdp-intro-image-container">
+                <div class="cdp-intro-image">
+                    <img src="../img/portfolio-page-image.PNG" alt="an image of the controller detection UI">
+                </div>
+            </div>
+        </section>
+
+        <section class="cdp-additional">
+            <div class="cdp-additional-demo">
+                <div class="cdp-additional-demo-video">
+                    <video autoplay muted loop id="cdp-demo-video">
+                        <source src="../mp4/verticle-header-demo.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="cdp-intro-description"><p style="font-size: 2rem;">Vertical Header</p> Using a small JavaScript function I was able to create a verticle header that appears when the user scrolls below the top threshold. Additioanlly the header lowers itself in relation to how far down the page the user is.</div>
+
+            </div>
+            <div class="cdp-additional-code">
+                <div class="pp-additional-code-image">
+                    <pre>
+                        <code class="language-javascript">
+1   function scrollMovement() {
+2        var vHeader = document.querySelector(".vertical-header");
+3        var scrollPosition = window.scrollY || window.pageYOffset
+4        var totalPageHeight = document.body.scrollHeight - window.innerHeight;
+5        var maxPosition = 20;
+6
+7        var newPosition = 0;
+8
+9        if (scrollPosition > 0) {
+10            newPosition = (Math.min(scrollPosition / totalPageHeight, 1)) * maxPosition + 8;
+11    }
+12
+13    vHeader.style.top = newPosition + "%";
+14  }
+15    window.addEventListener("scroll", scrollMovement);
+                        </code>
+                </div>
+            </div>
+        </section>
+
+        <div class="spacer"></div>
+
+        <section class="cdp-additional">
+            <div class="cdp-additional-code">
+                <div class="pp-additional-code-image-2">
+                    <pre>
+                        <code class="language-css">
+1   .skills-inner-container {
+2    position: relative;
+3    justify-content: center;
+4    align-items: center;
+5    display: flex;
+6    flex-direction: column;
+7  
+8    width: 30%;
+9    height: 650px;
+10    background-color: rgb(7, 7, 7);
+11  
+12    gap: 1rem;
+13    border-radius: 15px;
+14  
+15    transition: ease-in-out 0.7s all;
+16  }
+17  
+18  .skills-inner-container:hover {
+19    transform: translateY(30px);
+20    transition: ease-in-out 0.7s all;
+21  }
+22  
+23  .skills-inner-container:hover > .skills-inner-container-title {
+24    transform: translateY(70px);
+25    transition: ease-in-out 0.7s all;
+26    color: rgb(32, 162, 179);
+27  }
+28  
+29  .skills-inner-container-text {
+30    width: 100%;
+31    height: 100%;
+32    position: absolute;
+33    align-items: center;
+34    display: flex;
+35    flex-direction: column;
+36  
+37    text-align: center;
+38    opacity: 0;
+39  
+40    padding: 2rem 1rem 1rem 1rem;
+41  
+42    transition: ease-in-out 0.7s all;
+43  
+44    z-index: 999;
+45  }
+46  
+47  .skills-inner-container-text:hover {
+48    transition: ease-in-out 0.7s all;
+49    opacity: 1;
+50  }
+51  
+52  .skills-inner-container-title {
+53    transition: ease-in-out 0.7s all;
+54  }
+                        </code>
+                </div>
+            </div>
+            <div class="cdp-additional-demo">
+                <div class="cdp-additional-demo-video">
+                    <video autoplay muted loop id="cdp-demo-video">
+                        <source src="../mp4/skills-animation-demo.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="cdp-intro-description"><p style="font-size: 2rem;">Skills Animation</p> Using CSS was suffiecient enough to complete this task using CSS :hover tag to animate the opacity and location of the elements.</div>
+
+            </div>
+        </section>
+
+        <div class="spacer"></div>
+
+        <section class="cdp-additional">
+            <div class="cdp-additional-demo">
+                <div class="cdp-additional-demo-video">
+                    <video autoplay muted loop id="cdp-demo-video">
+                        <source src="../mp4/projects-animation-comp.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="cdp-intro-description"><p style="font-size: 2rem;">Projects Animation</p> Similar to the skills animation shown above, the projects animation was done using CSS with the addition of using the @keyframes tag to control the animation.</div>
+
+            </div>
+            <div class="cdp-additional-code">
+                <div class="pp-additional-code-image-3">
+                    <pre>
+                        <code class="language-css">
+1    .projects-inner-container:hover > .projects-inner-container-overlay {
+2        animation: forwards revealProject 0.7s;
+3    }
+4    
+5    .projects-inner-container:hover > .projects-inner-container-overlay > p {
+6        animation: forwards revealText 0.7s;
+7        animation-delay: 0.5s;
+8    }
+9    
+10    .projects-inner-container-overlay {
+11        width: 100%;
+12        height: 100%;
+13        background-color: rgb(20, 20, 20);
+14    
+15        display: flex;
+16        justify-content: center;
+17        align-items: center;
+18    
+19        position: absolute;
+20    
+21        z-index: 1000;
+22        opacity: 0;
+23    }
+24    
+25    @keyframes revealProject {
+26        0% {opacity: 0; width: 0%; left: 0;}
+27        100% {opacity: 1; width: 100%; left: 0;}
+28    }
+29    
+30    @keyframes revealText {
+31        0% {opacity: 0;}
+32        100% {opacity: 1;}
+33    }
+                        </code>
+                </div>
+            </div>
+        </section>
+
+        <div class="spacer"></div>
+    </div>
+
+
+    <footer>
+        <div class="footer-quote"><p>“We all need people who will give us feedback. That’s how we improve.”</p>
+            <p style="font-style: italic;">- Bill Gates</p>
+        </div>
+        <div class="footer-left"></div>
+        <div class="footer-socials">
+            <a class="github-icon" href="https://github.com/DriftChips" target="_blank"></a>
+            <a class="linkedin-icon" href="https://www.linkedin.com/in/dmitry-popovichev/" target="_blank"></a>
+            <a class="artstation-icon" href="https://dmitryp6.artstation.com/" target="_blank"></a>
+        </div>
+        <div class="footer-madeby">
+            <p>Made by me and hosted in SquareSpace</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+
+    <!-- and it's easy to individually load additional languages -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/go.min.js"></script>
+
+    <script>hljs.highlightAll();</script>
+</body>
+</html>
