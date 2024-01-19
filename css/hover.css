@@ -1,22 +1,5 @@
 /* Skills Section */
 
-.skills-inner-container {
-  position: relative;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-
-  width: 30%;
-  height: 650px;
-  background-color: rgb(7, 7, 7);
-
-  gap: 1rem;
-  border-radius: 15px;
-
-  transition: ease-in-out 0.7s all;
-}
-
 .skills-inner-container:hover {
   transform: translateY(30px);
   transition: ease-in-out 0.7s all;

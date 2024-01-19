@@ -16,30 +16,34 @@
     <link rel="stylesheet" href="../css/hover.css">
 </head>
 <body>
-    <div class="header">
-        <p class="logo">/* Dmitry */</p>
+    <div class="header" id="home">
+        <div class="logo">/* Dmitry */</div>
         <div class="header-right">
-        <p class="active">01. <a href="../index.html">Home</a><p>||</p></p>
-        <p class="active">02. <a href="../index.html#about">About</a><p>||</p></p>
-        <p class="active">03. <a href="../index.html#skills">Skills</a><p>||</p></p>
-        <p class="active">04. <a href="../index.html#projects">Projects</a><p>||</p></p>
-        <p class="active">05. <a href="../index.html#experience">Experience</a><p>||</p></p>
-        <p class="active">06. <a href="#">Contact</a></p>
+            <div class="header-inner"><p>01. <a href="../index.html#home">Home</a><p>||</p></p></div>
+            <div class="header-inner"><p>02. <a href="../index.html#about">About</a><p>||</p></p></div>
+            <div class="header-inner"><p>03. <a href="../index.html#skills">Skills</a><p>||</p></p></div>
+            <div class="header-inner"><p>04. <a href="../index.html#projects">Projects</a><p>||</p></p></div>
+            <div class="header-inner"><p>05. <a href="../index.html#experience">Experience</a><p>||</p></p></div>
+            <div class="header-inner"><p>06. <a href="../index.html">Contact</a></p></div>
         </div>
-        </div>
+    </div>
     
 
     
     <div class="page-image">
         <section class="cdp-intro">
             <div class="cdp-intro-inner">
+                <div class="github-repo">
+                    <img src="../img/Github(Grey).png" alt="">
+                    <a target="_blank" style="font-size: 1.5rem;" href="https://github.com/DriftChips/Clearing-Space">Github Repository Here</a>
+                </div>
                 <div class="cdp-intro-title">Clearing Space Project</div>
                 <div class="cdp-intro-description">Clearing Space was a game concept that I developed in my spare time. I used Unity's engine and editor to create the game which uses C# as it's programming language.</div>
                 <div class="cdp-intro-description">In Clearing Space the player controls a ship that flys around the Earth breaking down and collecting debris. The debris can be refined or sold back to Earth with the use of a Space Elevator.</div>
             </div>
             <div class="cs-intro-image-container">
                 <div class="cdp-additional-demo-video">
-                    <video style="width: 1080px;" autoplay muted loop id="cdp-demo-video">
+                    <video controls style="width: 1080px;" autoplay id="cdp-demo-video">
                         <source src="../mp4/clearing-space-demo.mp4" type="video/mp4">
                     </video>
                 </div>
@@ -54,7 +58,7 @@
                     </video>
                 </div>
 
-                <div class="cdp-intro-description"><p style="font-size: 2rem;">Camera Pointer</p> I needed a way to point a small arrow towards the space station to help guide the player back. The solution was to calculate multiple points that are joined together using the LineRenderer component. Because the radius at which the ship flys is constant, it was easy to make an accurate calculation, the result was smoothed out for further accuracy.</div>
+                <div class="cdp-intro-description"><p style="font-size: 2rem; padding-bottom: 1rem; font-family: 'Open Sans', sans-serif;">Camera Pointer</p> I needed a way to point a small arrow towards the space station to help guide the player back. The solution was to calculate multiple points that are joined together using the LineRenderer component. Because the radius at which the ship flys is constant, it was easy to make an accurate calculation, the result was smoothed out for further accuracy.</div>
 
             </div>
             <div class="cdp-additional-code">
@@ -183,7 +187,7 @@
                     </video>
                 </div>
 
-                <div class="cdp-intro-description"><p style="font-size: 2rem;">Distance To Station</p>Using a simple compairson function I could find out the distance between the space station and the player. Then with an if statement would check whether the distance was smaller than 100 units, if the result came back true I could then animate the camera to zoom in and out using a lerp function to smooth the transition.</div>
+                <div class="cdp-intro-description"><p style="font-size: 2rem; padding-bottom: 1rem; font-family: 'Open Sans', sans-serif;">Distance To Station</p>Using a simple compairson function I could find out the distance between the space station and the player. Then with an if statement would check whether the distance was smaller than 100 units, if the result came back true I could then animate the camera to zoom in and out using a lerp function to smooth the transition.</div>
 
             </div>
         </section>
@@ -198,7 +202,7 @@
                     </video>
                 </div>
 
-                <div class="cdp-intro-description"><p style="font-size: 2rem;">Cargo Teleport</p>This script checks for cargo amounts in the ship and the space station, compares them to see if the current junk is less than the max and adds the junk to the station inventory. The AddCargo function is called in the script above when the player is close enough to the station.</div>
+                <div class="cdp-intro-description"><p style="font-size: 2rem; padding-bottom: 1rem; font-family: 'Open Sans', sans-serif;">Cargo Teleport</p>This script checks for cargo amounts in the ship and the space station, compares them to see if the current junk is less than the max and adds the junk to the station inventory. The AddCargo function is called in the script above when the player is close enough to the station.</div>
 
             </div>
             <div class="cdp-additional-code">

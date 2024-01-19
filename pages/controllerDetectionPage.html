@@ -16,26 +16,30 @@
     <link rel="stylesheet" href="../css/hover.css">
 </head>
 <body>
-    <div class="header">
-        <p class="logo">/* Dmitry */</p>
+    <div class="header" id="home">
+        <div class="logo">/* Dmitry */</div>
         <div class="header-right">
-        <p class="active">01. <a href="../index.html">Home</a><p>||</p></p>
-        <p class="active">02. <a href="../index.html#about">About</a><p>||</p></p>
-        <p class="active">03. <a href="../index.html#skills">Skills</a><p>||</p></p>
-        <p class="active">04. <a href="../index.html#projects">Projects</a><p>||</p></p>
-        <p class="active">05. <a href="../index.html#experience">Experience</a><p>||</p></p>
-        <p class="active">06. <a href="#">Contact</a></p>
+            <div class="header-inner"><p>01. <a href="../index.html#home">Home</a><p>||</p></p></div>
+            <div class="header-inner"><p>02. <a href="../index.html#about">About</a><p>||</p></p></div>
+            <div class="header-inner"><p>03. <a href="../index.html#skills">Skills</a><p>||</p></p></div>
+            <div class="header-inner"><p>04. <a href="../index.html#projects">Projects</a><p>||</p></p></div>
+            <div class="header-inner"><p>05. <a href="../index.html#experience">Experience</a><p>||</p></p></div>
+            <div class="header-inner"><p>06. <a href="../index.html">Contact</a></p></div>
         </div>
-        </div>
+    </div>
     
 
     
     <div class="page-image">
         <section class="cdp-intro">
             <div class="cdp-intro-inner">
+                <div class="github-repo">
+                    <img src="../img/Github(Grey).png" alt="">
+                    <a target="_blank" style="font-size: 1.5rem;" href="https://github.com/DriftChips/PS5-Controller-Detection">Github Repository Here</a>
+                </div>
                 <div class="cdp-intro-title">PS5 Controller Detection Software</div>
                 <div class="cdp-intro-description">A piece of software that detects whether a PS5 controller is plugged in. Programmed in Python and packaged as an executable with a small UI for the buttons, displays and a tray icon.</div>
-                <div class="cdp-intro-description"><p style="font-size: 2rem;">The problem:</p> When launching some games while having the controller plugged resulted in a heavy framerate drop (down to 5-6fps). This is most likely because the controller is overclocked using a third party software which puts the controller on the same channel as the mouse resulting in two inputs. The controller has a bit of stick drift therefore my assumption was that this was causing issues in performance.</div>
+                <div class="cdp-intro-description"><p style="font-size: 2rem; font-family: 'Open Sans', sans-serif; font-weight: 400;">The problem:</p> When launching some games while having the controller plugged resulted in a heavy framerate drop (down to 5-6fps). This is most likely because the controller is overclocked using a third party software which puts the controller on the same channel as the mouse resulting in two inputs. The controller has a bit of stick drift therefore my assumption was that this was causing issues in performance.</div>
             </div>
             <div class="cdp-intro-image-container">
                 <div class="cdp-intro-image">
@@ -52,7 +56,7 @@
                     </video>
                 </div>
 
-                <div class="cdp-intro-description"><p style="font-size: 2rem;">The solutuion:</p> Create a software that detects whether the controller is plugged in using the Vendor and product ID. Depending on the status this will turn the traffic light red or green as well as setting the icon tray the corresponding colour as well. This will remind the user (me) whether the controller is plugged in or not without having to reach round the back of the PC to check.</div>
+                <div class="cdp-intro-description"><p style="font-size: 2rem; font-family: 'Open Sans', sans-serif; font-weight: 400;s">The solutuion:</p> Create a software that detects whether the controller is plugged in using the Vendor and product ID. Depending on the status this will turn the traffic light red or green as well as setting the icon tray the corresponding colour as well. This will remind the user (me) whether the controller is plugged in or not without having to reach round the back of the PC to check.</div>
 
             </div>
             <div class="cdp-additional-code">
@@ -178,7 +182,7 @@
 116
 117
 118    ''' 
-119    <-------------------------------------------------------------------------------->
+119    --------------------------------------------------------------------------------
 120    #Function for testing
 121    def testFunction():
 122        if isConnected == True:
@@ -191,7 +195,7 @@
 129    #Test button
 130    testBtn = customtkinter.CTkButton(window, text="Test Button", command=testFunction)
 131    testBtn.pack(pady=20)
-132    <-------------------------------------------------------------------------------->
+132    --------------------------------------------------------------------------------
 133    '''
 134
 135    #Functions for quiting, minimising, and showing the tray icon
@@ -221,7 +225,8 @@
     </div>
 
     <footer>
-        <div class="footer-quote"><p>“We all need people who will give us feedback. That’s how we improve.”</p>
+        <div class="footer-quote">
+            <p>“We all need people who will give us feedback. That’s how we improve.”</p>
             <p style="font-style: italic;">- Bill Gates</p>
         </div>
         <div class="footer-left"></div>

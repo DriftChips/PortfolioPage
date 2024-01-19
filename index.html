@@ -13,16 +13,15 @@
     <link rel="stylesheet" href="css/hover.css">
 </head>
 <body>
-  <div id="top"></div>
   <div class="header" id="home">
-    <p class="logo">/* Dmitry */</p>
+    <div class="logo">/* Dmitry */</div>
     <div class="header-right">
-      <p class="active">01. <a href="#top">Home</a><p>||</p></p>
-      <p class="active">02. <a href="#about">About</a><p>||</p></p>
-      <p class="active">03. <a href="#skills">Skills</a><p>||</p></p>
-      <p class="active">04. <a href="#projects">Projects</a><p>||</p></p>
-      <p class="active">05. <a href="#experience">Experience</a><p>||</p></p>
-      <p class="active">06. <a href="#">Contact</a></p>
+      <div class="header-inner"><p>01. <a href="#home">Home</a><p>||</p></p></div>
+      <div class="header-inner"><p>02. <a href="#about">About</a><p>||</p></p></div>
+      <div class="header-inner"><p>03. <a href="#skills">Skills</a><p>||</p></p></div>
+      <div class="header-inner"><p>04. <a href="#projects">Projects</a><p>||</p></p></div>
+      <div class="header-inner"><p>05. <a href="#experience">Experience</a><p>||</p></p></div>
+      <div class="header-inner"><p>06. <a href="#">Contact</a></p></div>
       
     </div>
   </div>
@@ -36,28 +35,24 @@
     <p class="#"><a href="#">Contact</a> 06.</p>
   </div>
 
-  <div class="static-image">
+  <div class="mobile-spacer" id="mobile-spacer"></div>
+
+  <div class="background-video-wrapper">
     <video autoplay muted loop id="background-video">
       <source src="mp4/background-video.mp4" type="video/mp4">
     </video>
-    <div class="overlay-text">
-      <p style="font-size: 4.2rem; font-family: 'League Spartan', sans-serif; font-weight: 600;">Hi, my name's Dmitry,</p>
-      <br>
-      <p style="font-family: 'Libre Baskerville', serif font; font-size: 1.5rem; font-weight: 400; font-style: italic;">I'm a Software Engineer with a creative edge!</p>
-    </div>
   </div>
 
   <div class="page-image">
     <section class="about-me-container" id="about">
-      <div class="about-me-fade"></div>
       <div class="about-me-inner">
-        <div class="about-me-title" style="font-family: 'League Spartan', sans-serif;">ABOUT ME</div>
+        <div class="about-me-title">ABOUT ME</div>
         <div class="about-me-text">
           <p>Greetings! I'm Dmitry, a Software Engineer with foundational skills in graphic design and game development.</p>
           <br>
-          <p>My professional journey commenced with a Graphic Design degree, yet I diverged from the conventional path. Opting for a more challenging route, I centered my projects on Virtual Reality and software development rather than traditional design.</p>
+          <p>My professional journey commenced with a Graphic Design degree, yet I diverged from the conventional path. Opting for a more challenging route, I centered my projects around Virtual Reality and software development rather than traditional design.</p>
           <br>
-          <p>As I delved into game development, first with a small studio and later as a freelancer, my fascination with programming intensified. This pivotal moment led me to redirect my career towards the dynamic realm of software engineering.</p>
+          <p>As I delved into game development, first with a small studio and later as a freelancer, my fascination with programming grew. This pivotal moment led me to redirect my career towards the software engineering path.</p>
         </div>
       </div>
     </section>
@@ -67,7 +62,7 @@
         <div class="skills-inner-container">
           <p class="skills-inner-container-title" style="font-size: 2rem;">Software Foundation</p>
           <div class="skills-inner-container-text">
-            <p>Having successfully graduated from a Level 3 Software Developer Bootcamp, I've acquired a solid grasp of software development, agile methodologies, networks, and embraced the DevOps mindset. Additionally, I've embarked on a journey into Python, further expanding my skill set. </p>
+            <p>Having successfully graduated from a Level 3 Software Developer Bootcamp, I've acquired a solid grasp of software development, agile methodologies, networks, and embraced the DevOps mindset. Additionally, I've embarked on a journey into Python, further expanding my skill set.</p>
             <div class="skills-language-boxes">
               <div class="programming-language-box">Python</div><div class="programming-language-box">C#</div><div class="programming-language-box">MySQL</div><div class="programming-language-box">Azure</div><div class="programming-language-box">Agile</div><div class="programming-language-box">DevOps</div>
             </div>
@@ -78,9 +73,9 @@
         <div class="skills-inner-container">
           <p class="skills-inner-container-title" style="font-size: 2rem;">Front-End Experience</p>
           <div class="skills-inner-container-text">
-            <p>I started my front-end learning by crafting UI elements and HUDs for games, primarily involving C# programming. As my curiosity expanded and the necessity for a more tailored front-end website emerged, I immersed myself in learning HTML, CSS, and JavaScript. This knowledge was further reinforced through the successful completion of four mini projects designed for a bootcamp application. The skills I've acquired have been applied in the constructing of this portfolio.</p>
+            <p>I started my front-end learning by crafting UI elements and HUDs for games, primarily involving C# programming. As my curiosity grew and the necessity for a more tailored front-end website emerged, I immersed myself in learning HTML, CSS, and JavaScript. This knowledge was further reinforced through the successful completion of four mini projects designed for a bootcamp application. The skills I've acquired have been applied in the construction of this portfolio.</p>
             <div class="skills-language-boxes">
-              <div class="programming-language-box">HTML</div><div class="programming-language-box">CSS</div><div class="programming-language-box">JavaScript</div><div class="programming-language-box">PHP</div><div class="programming-language-box">React?</div>
+              <div class="programming-language-box">HTML</div><div class="programming-language-box">CSS</div><div class="programming-language-box">JavaScript</div><div class="programming-language-box">PHP</div>
             </div>
           </div>
         </div>
@@ -102,16 +97,19 @@
     <section class="projects-container" id="projects">
       <div class="projects-inner">
         <div class="projects-title">Favourite Projects</div>
-        <div class="projects-inner-container" style="background-image: url(../img/PS5-controller-background.jpg);">
-          <div class="projects-inner-container-overlay"><p style="font-size: 1rem; padding: 50px; opacity: 0;">A piece of software that detects whether a PS5 controller is plugged in. Programmed in Python and packaged as an executable with a small UI for the buttons, displays and a tray icon.</p><button class="projects-link-button"><a href="pages/controllerDetectionPage.html">Click here for more</a></button></div>
+
+        <div id="project-inner-container" class="projects-inner-container" style="background-image: url(../img/PS5-controller-background.jpg);">
+          <div class="projects-inner-container-overlay"><p style="font-size: 1rem; padding: 3rem; opacity: 0;">A piece of software that detects whether a PS5 controller is plugged in. Programmed in Python and packaged as an executable with a small UI for the buttons, displays and a tray icon.</p><button class="projects-link-button"><a href="pages/controllerDetectionPage.html">Click here for more</a></button></div>
           <p style="padding: 0.5rem; text-shadow: 0 0 4px #000000, 0 0 5px #000000;">PS5 Controller Detection</p>
         </div>
-        <div class="projects-inner-container" style="background-image: url(../img/Clearing-space-background.jpg);">
-          <div class="projects-inner-container-overlay"><p style="font-size: 1rem; padding: 50px; opacity: 0;">A mobile game concept where the player controls a ship to clear up space junk. Created in Unity and programmed with C#.</p><button class="projects-link-button"><a href="pages/clearingSpaceProject.html">Click here for more</a></button></div>
+
+        <div id="project-inner-container" class="projects-inner-container" style="background-image: url(../img/Clearing-space-background.jpg);">
+          <div class="projects-inner-container-overlay"><p style="font-size: 1rem; padding: 3rem; opacity: 0;">A mobile game concept where the player controls a ship to clear up space junk. Created in Unity and programmed with C#.</p><button class="projects-link-button"><a href="pages/clearingSpaceProject.html">Click here for more</a></button></div>
           <p style="padding: 0.5rem; text-shadow: 0 0 4px #000000, 0 0 5px #000000;">Clearing Space</p>
         </div>
-        <div class="projects-inner-container" style="background-image: url(../img/static_background_image-02.png);">
-          <div class="projects-inner-container-overlay"><p style="font-size: 1rem; padding: 50px; opacity: 0;">A simple website page made with HTML, CSS and JavaScript to showcase my best work.</p><button class="projects-link-button"><a href="pages/portfolioProject.html">Click here for more</a></button></div>
+
+        <div id="project-inner-container" class="projects-inner-container" style="background-image: url(../img/static_background_image-02.png);">
+          <div class="projects-inner-container-overlay"><p style="font-size: 1rem; padding: 3rem; opacity: 0;">A simple website page made with HTML, CSS and JavaScript to showcase my best work.</p><button class="projects-link-button"><a href="pages/portfolioProject.html">Click here for more</a></button></div>
           <p style="padding: 0.5rem; text-shadow: 0 0 4px #000000, 0 0 5px #000000;">Portfolio Website</p>
         </div>
       </div>
